@@ -215,7 +215,7 @@ function loop(){
                 const name = playfield[row][col];
                 context.fillStyle = colors[name];
 
-                conmtext.fillRect(col * grid, row * grid, grid-1, grid-1);
+                context.fillRect(col * grid, row * grid, grid-1, grid-1);
             }
         }
     }
