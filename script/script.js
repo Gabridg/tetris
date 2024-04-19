@@ -61,7 +61,7 @@ function  isValidMove(matrix, cellRow, cellCol){
             if(matrix[row][col] && (
                 cellCol + col < 0 ||
                 cellCol + col >= playfield[0].length ||
-                cellcol + row >= playfield.length ||
+                cellCol + row >= playfield.length ||
 
                 //if collides with other piece
                 playfield[cellRow + row][cellCol + col]
@@ -117,13 +117,13 @@ function showGameOver(){
 
     context.fillStyle = 'black';
     context.globalAlpha = 0.75;
-    context.filReact(0, canvas.height / 2 - 30, canvas.width, 60);
+    context.fillRect(0, canvas.height / 2 - 30, canvas.width, 60);
 
     context.globalAlpha = 1;
     context.fillStyle = 'white';
     context.font = '36px monospace';
     context.textAlign = 'center';
-    contxt.textBaseline = 'middle';
+    context.textBaseline = 'middle';
     context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
 
 }
@@ -209,12 +209,13 @@ function loop(){
 
     // Draw playfield
 
-    for(let row = 0; row < 20; row++){
+    for (let row = 0; row < 20; row++){
+        playfield[row] = [];
         for(let col = 0; col < 20; col++){
             if(playfield[row][col]){
                 const name = playfield[row][col];
-                context.fillStyle = colors[name];
-
+                context.fillStyle = color[name];
+    
                 context.fillRect(col * grid, row * grid, grid-1, grid-1);
             }
         }
@@ -231,10 +232,10 @@ function loop(){
             }
         }
 
-        context.fillStyle = colors[tetronimo.name];
+        context.fillStyle = color[tetronimo.name];
 
         for(let row = 0; row < tetronimo.matrix.length; row++){
-            for(let col = 0; col < tetronimo.matrix[col].length; col++){
+            for(let col = 0; col < tetronimo.matrix[row].length; col++){
                 if(tetronimo.matrix[row][col]){
                     context.fillRect((tetronimo.col + col) * grid, (tetronimo.row + row) * grid, grid-1, grid-1);
                 }
